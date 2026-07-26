@@ -21,7 +21,7 @@ The goal is to predict one of three spoiler types:
 
 The final model uses **RoBERTa-base** with the clickbait post and article paragraphs.
 
-**Best public Kaggle score: 0.78270**
+**Best public Kaggle score: 0.78270**  
 **Submission date: July 17, 2026**
 
 ### Task 2: Generating Spoilers
@@ -38,7 +38,7 @@ The final approach uses:
 
 The final method keeps the previous QA prediction unless the new passage candidate passes several checks.
 
-**Best public Kaggle score: 0.46217**
+**Best public Kaggle score: 0.46217**  
 **Submission date: July 25, 2026**
 
 The final method improved the previous public score of `0.45453` while changing only 13 of the 400 test predictions.
@@ -66,7 +66,7 @@ clickbait-spoiling-project/
     │   └── task_2_model_0724_best.ipynb
     ├── task2-final0725.ipynb
     └── submission_crossencoder_agreement025_quality_v1.csv
-
+```
 ## Notes
 
 The competition datasets and trained model checkpoints are not included in this repository.
