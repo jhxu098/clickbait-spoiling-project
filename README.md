@@ -1,47 +1,74 @@
-# clickbait-spoiling-project
-MSE641 Final Project
+# Clickbait Spoiling Project
 
-This repository contains code and submissions for the MSE 641 Clickbait Spoiling final project.
+Final project for **MSE 641: Text Analytics** at the University of Waterloo.
 
-The project includes two subtasks:
+This repository contains the notebooks and Kaggle submission files for two clickbait-spoiling tasks:
 
-- Task 1: Spoiler type classification
-- Task 2: Spoiler generation
+- **Task 1:** Predicting Spoiler Type
+- **Task 2:** Generating Spoilers
 
-## Milestone 1: Naive Baselines
+## Project Overview
 
-For Milestone 1, I ran the official naive baselines for both tasks and submitted the results to Kaggle.
+Clickbait posts leave out important information to make readers open the linked article. This project focuses on predicting the type of spoiler needed and generating a spoiler from the article.
 
-### Task 1
+### Task 1: Predicting Spoiler Type
 
-The Task 1 naive baseline predicts the same spoiler type for every test instance:
+The goal is to predict one of three spoiler types:
+
+- `phrase`
+- `passage`
+- `multi`
+
+The final model uses **RoBERTa-base** with the clickbait post and article paragraphs.
+
+**Best public Kaggle score: 0.78270**
+**Submission date: July 17, 2026**
+
+### Task 2: Generating Spoilers
+
+The goal is to generate a spoiler from the linked article.
+
+The final approach uses:
+
+1. spoiler-type prediction;
+2. extractive question answering;
+3. passage candidate generation;
+4. RoBERTa cross-encoder reranking;
+5. confidence and quality checks.
+
+The final method keeps the previous QA prediction unless the new passage candidate passes several checks.
+
+**Best public Kaggle score: 0.46217**
+**Submission date: July 25, 2026**
+
+The final method improved the previous public score of `0.45453` while changing only 13 of the 400 test predictions.
+
+## Repository Structure
 
 ```text
-spoilerType = passage
-```
+clickbait-spoiling-project/
+├── README.md
+├── task1/
+│   ├── baseline/
+│   │   ├── task1-naive-baseline.ipynb
+│   │   └── prediction_task1.csv
+│   ├── experiments/
+│   │   └── mse641-task1-final-project.ipynb
+│   ├── task1-final-model.ipynb
+│   └── submission_roberta_post_article.csv
+│
+└── task2/
+    ├── baseline/
+    │   ├── task2-naive-baseline.ipynb
+    │   └── prediction_task2.csv
+    ├── experiments/
+    │   ├── task2-experiments.ipynb
+    │   └── task_2_model_0724_best.ipynb
+    ├── task2-final0725.ipynb
+    └── submission_crossencoder_agreement025_quality_v1.csv
 
-The Task 1 baseline submission file is:
+## Notes
 
-```text
-task1/prediction_task1.csv
-```
+The competition datasets and trained model checkpoints are not included in this repository.
 
-## Task 2
-
-The Task 2 naive baseline uses the linked page title as the generated spoiler:
-
-```text
-spoiler = targetTitle
-```
-
-The Kaggle submission file has the required format:
-
-```text
-id,spoiler
-```
-
-The Task 2 baseline submission file is:
-
-```text
-task2/prediction_task2.csv
-```
+Some Task 2 experiments use intermediate files and model assets saved during Kaggle development, so rerunning the final notebook from the beginning may require retraining models or recreating those files.
